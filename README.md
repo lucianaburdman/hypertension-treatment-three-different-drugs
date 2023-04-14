@@ -145,5 +145,3 @@ The plot shows the Cost-Effectiveness Acceptability Curves for the three drugs (
 We can see that Drug A is the most cost-effective drug, as it has the highest probability of being cost-effective at all WTP thresholds. Drug B is the second most cost-effective drug, while Drug C is the least cost-effective drug.
 
 At a WTP threshold of USD50,000 per QALY (the standard threshold used in many countries), the probabilities of being cost-effective are 0.99 for Drug A, 0.85 for Drug B, and 0.59 for Drug C. This means that if the decision maker is willing to pay up to USD50,000 per QALY, there is a 99% probability that Drug A is the most cost-effective option.
-
-Overall, the Cost-Effectiveness Acceptability Curve plots provide a useful tool for comparing the cost-effectiveness of different drugs and for informing decision making in healthcare.
