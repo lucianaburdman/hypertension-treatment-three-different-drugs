@@ -7,7 +7,7 @@ output: html_document
 
 # Introduction
 
-As a biostatistician with a strong background in scientific literature research, I am excited to showcase my skills and expertise that aligns with Parexel's core values and services. Leveraging my experience in the industry and my familiarity with the company, I have developed a repository that focuses on two of the three essential element of HEOR that Parexel provides support for: evidence identification and health economic modeling.
+As a biostatistician with a strong background in scientific literature research, I am excited to showcase my skills and expertise that aligns with Parexel's core values and services. Leveraging my experience in the industry and my past experience in the company, I have developed a repository that focuses on two of the three essential element of HEOR that Parexel provides support for: evidence identification and health economic modeling.
 
 **If you'd like to go straight to the results plots and interpretation, click [here](https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs#results)**
 
