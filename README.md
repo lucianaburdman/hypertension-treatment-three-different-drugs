@@ -7,141 +7,162 @@ output: html_document
 
 # Introduction
 
-This project is designed to demonstrate the creation of cost-effectiveness acceptability curve plots using simulated data for three drugs, A, B, and C for hypertension treatment. The project walks through the entire process, starting from the simulation of the data, the cost-effectiveness analysis, and finally the creation of the cost-effectiveness acceptability curves, which show the probability of each drug being cost-effective at various willingness-to-pay (WTP) thresholds. The project uses R programming language and several R packages, including BCEA, ggplot2, dplyr, and tidyr.
+As a biostatistician with a strong background in HEOR, I am excited to showcase my skills and expertise in a validation project that aligns with Parexel's core values and services. Leveraging my experience in the industry and my familiarity with the company, I have developed a project that focuses on three critical aspects of HEOR: evidence identification, health economic modeling, and clinical outcomes assessments.
 
-The project presented here aims to apply skills in Health Economics and Outcomes Research (HEOR), specifically in cost-effectiveness analysis and acceptability curve plots. HEOR is a multidisciplinary field that involves the use of economic and epidemiological methods to evaluate the value of healthcare interventions and inform healthcare decision-making. The project simulates a cost-effectiveness analysis of three different drugs and demonstrates how to generate and interpret cost-effectiveness acceptability curves using R software. By learning these techniques, the project aims to equip individuals with practical skills to apply HEOR principles in real-world settings.
+By conducting a thorough literature review, designing a robust health economic model, and selecting the most appropriate clinical outcomes assessments, my project aims to demonstrate my ability to provide a comprehensive and data-driven evidence package that meets HTA guidelines. I am confident that this project will not only showcase my skills but also demonstrate my commitment to advancing clinical research and improving patient outcomes.
 
+
+# Evidence Identification with Literature Review
+
+As a biostatistician with 8+ years of experience in life science research, I understand the importance of evidence identification through systematic and comprehensive literature reviews in Health Economics and Outcomes Research (HEOR). Parexel's focus on HTA-compliant reviews, covering clinical trial outcomes, quality of life, product comparators, economic evidence, and more, aligns with my analytical mindset and research expertise. With a collaborative and self-reliant approach, I am confident in my ability to eliminate risk of bias, identify necessary data for reimbursement, and adapt our approach to meet the objectives of the study. My track record of leading research projects and proposing innovative solutions, coupled with strong communication skills, will enable me to work effectively with a diverse team of medical professionals, statisticians, and investors to provide a comprehensive evidence package that advances clinical research in healthcare's most complex areas.
+
+# Health Economic Modeling
+
+In this section, I will showcase my skills in health economic modeling by simulating and comparing the cost-effectiveness of three drugs for treating hypertension using R, in line with Parexel's focus on generating evidence-based value propositions and decision-making tools.
+
+The following R code simulates data for three drugs (A, B, C) to treat hypertension and estimates the effect of each drug on systolic
 
 ```{r}
-# Load required packages
-library(BCEA)
-library(ggplot2)
-library(dplyr)
-library(tidyr)
+library(tidyverse)
 
-# Set seed for reproducibility
+# Simulating data for three drugs (A, B, C) to treat hypertension
 set.seed(123)
+n <- 1000
 
+# Drug A
+a <- tibble(
+  id = seq(1:n),
+  age = rnorm(n, 50, 10),
+  sex = sample(c("male", "female"), n, replace = TRUE),
+  sbp = rnorm(n, 140, 15),
+  dbp = rnorm(n, 90, 10),
+  drug = rep("A", n),
+  ldl = rnorm(n, 100, 20),
+  hdl = rnorm(n, 50, 10),
+  bmi = rnorm(n, 25, 5),
+  smoking = sample(c("yes", "no"), n, replace = TRUE)
+)
+
+# Drug B
+b <- tibble(
+  id = seq(1:n),
+  age = rnorm(n, 50, 10),
+  sex = sample(c("male", "female"), n, replace = TRUE),
+  sbp = rnorm(n, 135, 15),
+  dbp = rnorm(n, 85, 10),
+  drug = rep("B", n),
+  ldl = rnorm(n, 90, 15),
+  hdl = rnorm(n, 55, 10),
+  bmi = rnorm(n, 24, 5),
+  smoking = sample(c("yes", "no"), n, replace = TRUE)
+)
+
+# Drug C
+c <- tibble(
+  id = seq(1:n),
+  age = rnorm(n, 50, 10),
+  sex = sample(c("male", "female"), n, replace = TRUE),
+  sbp = rnorm(n, 130, 15),
+  dbp = rnorm(n, 80, 10),
+  drug = rep("C", n),
+  ldl = rnorm(n, 80, 10),
+  hdl = rnorm(n, 60, 10),
+  bmi = rnorm(n, 23, 5),
+  smoking = sample(c("yes", "no"), n, replace = TRUE)
+)
+
+# Combining data for all three drugs
+data <- bind_rows(a, b, c)
+
+# Creating a linear regression model to estimate the effect of each drug on SBP
+model <- lm(sbp ~ drug + age + sex + ldl + hdl + bmi + smoking, data = data)
+
+# Cost-utility analysis
+# Assuming the cost of each drug is $100 per month
+cost <- c(100, 150, 200) # cost of drugs A, B, C respectively
+
+# Quality-adjusted life years (QALYs) gained
+# QALYs gained = (change in SBP / 10) * 0.03 (0.03 is the utility weight for hypertension)
+data$qalys <- ((predict(model, newdata = data) - data$sbp) / 10) * 0.03
+
+# Cost per QALY gained for each drug
+data$cpq <- cost / data$qalys
+
+# Plotting the results
+ggplot(data, aes(x = drug, y = cpq, fill = drug)) +
+  geom_boxplot() +
+  scale_y_continuous(labels = scales::dollar_format(prefix = "$"), limits = c(-10000, 10000)) +
+  labs(title = "Cost per QALY gained for three drugs to treat hypertension",
+       x = "Drug",
+       y = "Cost per QALY gained ($/QALY)")
 ```
-
-# Simulated data
-
-First, we will simulate some data for the three drugs. We assume that each drug has a different cost and effectiveness, and that the costs and effectiveness are normally distributed with the following means and standard deviations:
-
-* Drug A: cost = 100, effectiveness = 0.8
-* Drug B: cost = 200, effectiveness = 0.85
-* Drug C: cost = 300, effectiveness = 0.9
-
-We will simulate 1000 patients for each drug.
-
-```{r}
-
-# Simulate data for Drug A
-drug_a <- data.frame(cost = rnorm(1000, mean = 100, sd = 10),
-                      eff = rnorm(1000, mean = 0.8, sd = 0.05),
-                      drug = "A")
-
-# Simulate data for Drug B
-drug_b <- data.frame(cost = rnorm(1000, mean = 200, sd = 20),
-                      eff = rnorm(1000, mean = 0.85, sd = 0.03),
-                      drug = "B")
-
-# Simulate data for Drug C
-drug_c <- data.frame(cost = rnorm(1000, mean = 300, sd = 30),
-                      eff = rnorm(1000, mean = 0.9, sd = 0.02),
-                      drug = "C")
-
-# Combine data
-sim_data <- bind_rows(drug_a, drug_b, drug_c)
-
-
-```
-
-# Cost-effectiveness analysis
-
-Next, we will perform a cost-effectiveness analysis to compare the three drugs. We will assume a willingness-to-pay threshold of $50,000 per quality-adjusted life year (QALY).
-
-```{r}
-# Define cost-effectiveness model
-ce_model <- function(cost, eff) {
-  ce_ratio <- cost / eff
-  ce_ratio[is.na(ce_ratio)] <- Inf
-  return(ce_ratio)
-}
-
-# Calculate cost-effectiveness ratios
-ce_ratios <- ce_model(sim_data$cost, sim_data$eff)
-
-# Calculate incremental cost-effectiveness ratios
-icrs <- function(d1, d2) {
-  ce1 <- ce_model(d1$cost, d1$eff)
-  ce2 <- ce_model(d2$cost, d2$eff)
-  return(ce2 - ce1)
-}
-
-icr_ab <- icrs(drug_a, drug_b)
-icr_ac <- icrs(drug_a, drug_c)
-icr_bc <- icrs(drug_b, drug_c)
-
-# Calculate net monetary benefits
-nmb <- function(ce_ratio, wtp) {
-  return(ce_ratio * wtp - 1)
-}
-
-nmb_a <- nmb(ce_ratios, 50000)
-nmb_b <- nmb(ce_ratios - icr_ab, 50000)
-nmb_c <- nmb(ce_ratios - icr_ac, 50000)
-
-# Calculate probabilities of being cost-effective
-pc_a <- mean(nmb_a > 0)
-pc_b <- mean(nmb_b > 0)
-pc_c <- mean(nmb_c > 0)
-
-
-```
-
-
-# Cost-Effectiveness Acceptability Curve plots
-
-Finally, we will create Cost-Effectiveness Acceptability Curve plots to visualize the results.
-
-```{r}
-
-# Calculate acceptability curves
-ac_data <- data.frame(wtp = seq(0, 150000, 5000))
-
-ac_data$prob_a <- sapply(ac_data$wtp, function(w) mean(nmb_a > w))
-ac_data$prob_b <- sapply(ac_data$wtp, function(w) mean(nmb_b > w))
-ac_data$prob_c <- sapply(ac_data$wtp, function(w) mean(nmb_c > w))
-
-ac_data <- ac_data %>% pivot_longer(cols = c(prob_a, prob_b, prob_c),
-                                     names_to = "Drug",
-                                     values_to = "Probability")
-
-# Plot acceptability curves
-ggplot(ac_data, aes(x = wtp, y = Probability, color = Drug)) +
-  geom_line(size = 1.5) +
-  scale_x_continuous("Willingness-to-pay (per QALY)",
-                     limits = c(0, 150000),
-                     breaks = seq(0, 150000, 25000)) +
-  scale_y_continuous("Probability of being cost-effective",
-                     limits = c(0, 1),
-                     breaks = seq(0, 1, 0.2)) +
-  labs(title = "Cost-Effectiveness Acceptability Curve",
-       subtitle = "Comparison of Drugs A, B, and C",
-       color = "Drug",
-       caption = "Source: Simulated data") +
-  theme_bw()
-
-
-```
-
-# Cost-Effectiveness Acceptability Curves for the three drugs
 
 <img src="https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs/blob/4d6a18f31ed636b03cbb4cd91308a223262577d1/Image1.png">
 
-The plot shows the Cost-Effectiveness Acceptability Curves for the three drugs (A, B, and C) over a range of willingness-to-pay (WTP) thresholds. The x-axis shows the WTP threshold in dollars per quality-adjusted life year (QALY), while the y-axis shows the probability of each drug being cost-effective at that WTP threshold.
+To visualize the results, we created a cost-effectiveness plane (Figure 1) and an incremental cost-effectiveness ratio (ICER) plot (Figure 2). Figure 1 shows the cost and QALY results for each drug, with each point representing one simulation. The bottom right quadrant of the plot represents the most cost-effective option, and as we can see, drug A dominates the other two drugs. Figure 2 shows the ICER results, which compare the incremental cost per QALY gained between each pair of drugs. The vertical line represents the willingness-to-pay threshold, which is the maximum amount the decision maker is willing to pay for an additional QALY gained. As we can see, drug A is the most cost-effective option, as it has the lowest ICER compared to the other two drugs.
 
-We can see that Drug A is the most cost-effective drug, as it has the highest probability of being cost-effective at all WTP thresholds. Drug B is the second most cost-effective drug, while Drug C is the least cost-effective drug.
+## Results
 
-At a WTP threshold of USD50,000 per QALY (the standard threshold used in many countries), the probabilities of being cost-effective are 0.99 for Drug A, 0.85 for Drug B, and 0.59 for Drug C. This means that if the decision maker is willing to pay up to USD50,000 per QALY, there is a 99% probability that Drug A is the most cost-effective option.
+To visualize the results, we created a cost-effectiveness plane (Figure 1) and an incremental cost-effectiveness ratio (ICER) plot (Figure 2). Figure 1 shows the cost and QALY results for each drug, with each point representing one simulation. The bottom right quadrant of the plot represents the most cost-effective option, and as we can see, drug A dominates the other two drugs. Figure 2 shows the ICER results, which compare the incremental cost per QALY gained between each pair of drugs. The vertical line represents the willingness-to-pay threshold, which is the maximum amount the decision maker is willing to pay for an additional QALY gained. As we can see, drug A is the most cost-effective option, as it has the lowest ICER compared to the other two drugs.
+
+```{r}
+## Cost-effectiveness plane
+# Create data frame with results for each drug
+results <- data.frame(drug = c(rep("A", 1000), rep("B", 1000), rep("C", 1000)),
+                      cost = c(rnorm(1000, 10000, 500), rnorm(1000, 12000, 500), rnorm(1000, 15000, 500)),
+                      qaly = c(rnorm(1000, 10, 0.5), rnorm(1000, 8, 0.5), rnorm(1000, 6, 0.5)))
+
+# Plot cost-effectiveness plane
+ggplot(results, aes(x = cost, y = qaly, color = drug)) +
+  geom_point(alpha = 0.5, size = 3) +
+  geom_hline(yintercept = max(results$qaly), linetype = "dashed") +
+  geom_vline(xintercept = min(results$cost), linetype = "dashed") +
+  labs(x = "Total costs ($)",
+       y = "QALYs gained",
+       color = "Drug",
+       title = "Cost-effectiveness plane") +
+  theme_minimal()
+  
+  ## Incremental cost-effectiveness ratio (ICER) plot
+
+# Calculate ICER between drugs A and B
+icer_ab <- (mean(results$cost[results$drug == "B"]) - mean(results$cost[results$drug == "A"])) /
+  (mean(results$qaly[results$drug == "B"]) - mean(results$qaly[results$drug == "A"]))
+
+# Calculate ICER between drugs A and C
+icer_ac <- (mean(results$cost[results$drug == "C"]) - mean(results$cost[results$drug == "A"])) /
+  (mean(results$qaly[results$drug == "C"]) - mean(results$qaly[results$drug == "A"]))
+
+# Calculate ICER between drugs B and C
+icer_bc <- (mean(results$cost[results$drug == "C"]) - mean(results$cost[results$drug == "B"])) /
+  (mean(results$qaly[results$drug == "C"]) - mean(results$qaly[results$drug == "B"]))
+
+# Create data frame with ICER results
+icer_results <- data.frame(drugs = c("A vs B", "A vs C", "B vs C"),
+                           ICER = c(icer_ab, icer_ac, icer_bc))
+
+# Plot ICER results
+ggplot(icer_results, aes(x = drugs, y = ICER)) +
+  geom_bar(stat = "identity", fill = "blue", alpha = 0.5) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_text(aes(label = sprintf("$%0.0f", ICER)), vjust = -0.5) +
+  labs(x = "Drug comparison",
+       y = "Incremental cost-effectiveness ratio (ICER)",
+       title = "ICER plot") +
+  theme_minimal()
+
+```
+
+<img src="https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs/blob/4d6a18f31ed636b03cbb4cd91308a223262577d1/Image2.png">
+Figure 2: Cost-effectiveness plane.
+
+<img src="https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs/blob/4d6a18f31ed636b03cbb4cd91308a223262577d1/Image3.png">
+Figure 3: Incremental cost-effectiveness ratio (ICER) plot.
+
+## Interpretation
+
+Based on our simulations, drug A is the most cost-effective option for treating hypertension, as it has the lowest overall costs and highest QALYs gained. This suggests that if decision makers are looking to maximize health outcomes while minimizing costs, they should consider using drug A over the other two options.
+
+It is important to note that our simulations were based on several assumptions and limitations, such as the accuracy of the data used and the assumption that the model accurately reflects real-world conditions. Additionally, the results of the simulations may not be generalizable to all populations or healthcare settings. As such, decision makers should consider the limitations of the model and the specific context in which it will be used before making any final decisions.
+
+Overall, our health economic modeling provides valuable insights into the cost-effectiveness of different drugs for treating hypertension, and can help inform decision making and resource allocation in healthcare settings.
