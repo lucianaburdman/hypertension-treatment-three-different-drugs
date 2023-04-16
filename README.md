@@ -9,8 +9,6 @@ output: html_document
 
 As a biostatistician with a strong background in HEOR, I am excited to showcase my skills and expertise in a validation project that aligns with Parexel's core values and services. Leveraging my experience in the industry and my familiarity with the company, I have developed a project that focuses on two of the three essential element of HEOR that Parexel provides support for: evidence identification and health economic modeling.
 
-By conducting a thorough literature review, designing a robust health economic model, and selecting the most appropriate clinical outcomes assessments, my project aims to demonstrate my ability to provide a comprehensive and data-driven evidence package that meets HTA guidelines. I am confident that this project will not only showcase my skills but also demonstrate my commitment to advancing clinical research and improving patient outcomes.
-
 **If you'd like to go straight to the results plots and interpretation, click [here](https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs#results)**
 
 # Evidence Identification with Literature Review
@@ -100,11 +98,10 @@ ggplot(data, aes(x = drug, y = cpq, fill = drug)) +
 
 <img src="https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs/blob/28ed6072dbaed988c7c543ad99f7c6c20def1f88/Image1.png">
 
-To visualize the results, we created a cost-effectiveness plane (Figure 1) and an incremental cost-effectiveness ratio (ICER) plot (Figure 2). Figure 1 shows the cost and QALY results for each drug, with each point representing one simulation. The bottom right quadrant of the plot represents the most cost-effective option, and as we can see, drug A dominates the other two drugs. Figure 2 shows the ICER results, which compare the incremental cost per QALY gained between each pair of drugs. The vertical line represents the willingness-to-pay threshold, which is the maximum amount the decision maker is willing to pay for an additional QALY gained. As we can see, drug A is the most cost-effective option, as it has the lowest ICER compared to the other two drugs.
 
 ## Results
 
-To visualize the results, we created a cost-effectiveness plane (Figure 1) and an incremental cost-effectiveness ratio (ICER) plot (Figure 2). Figure 1 shows the cost and QALY results for each drug, with each point representing one simulation. The bottom right quadrant of the plot represents the most cost-effective option, and as we can see, drug A dominates the other two drugs. Figure 2 shows the ICER results, which compare the incremental cost per QALY gained between each pair of drugs. The vertical line represents the willingness-to-pay threshold, which is the maximum amount the decision maker is willing to pay for an additional QALY gained. As we can see, drug A is the most cost-effective option, as it has the lowest ICER compared to the other two drugs.
+To visualize the results, we create a cost-effectiveness plane (Figure 2) and an incremental cost-effectiveness ratio (ICER) plot (Figure 3). Figure 2 shows the cost and QALY results for each drug, with each point representing one simulation. The bottom right quadrant of the plot represents the most cost-effective option, and as we can see, drug A dominates the other two drugs. Figure 3 shows the ICER results, which compare the incremental cost per QALY gained between each pair of drugs. The vertical line represents the willingness-to-pay threshold, which is the maximum amount the decision maker is willing to pay for an additional QALY gained. As we can see, drug A is the most cost-effective option, as it has the lowest ICER compared to the other two drugs.
 
 ```{r}
 ## Cost-effectiveness plane
