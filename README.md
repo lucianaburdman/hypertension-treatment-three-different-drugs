@@ -11,7 +11,7 @@ As a biostatistician with a strong background in HEOR, I am excited to showcase 
 
 By conducting a thorough literature review, designing a robust health economic model, and selecting the most appropriate clinical outcomes assessments, my project aims to demonstrate my ability to provide a comprehensive and data-driven evidence package that meets HTA guidelines. I am confident that this project will not only showcase my skills but also demonstrate my commitment to advancing clinical research and improving patient outcomes.
 
-**If you'd like to go straight to the results plots and interpretation, click [here](##-results)**
+**If you'd like to go straight to the results plots and interpretation, click [here](##Results)**
 
 # Evidence Identification with Literature Review
 
