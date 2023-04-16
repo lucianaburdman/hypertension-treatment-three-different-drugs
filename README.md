@@ -87,21 +87,12 @@ data$qalys <- ((predict(model, newdata = data) - data$sbp) / 10) * 0.03
 # Cost per QALY gained for each drug
 data$cpq <- cost / data$qalys
 
-# Plotting the results
-ggplot(data, aes(x = drug, y = cpq, fill = drug)) +
-  geom_boxplot() +
-  scale_y_continuous(labels = scales::dollar_format(prefix = "$"), limits = c(-10000, 10000)) +
-  labs(title = "Cost per QALY gained for three drugs to treat hypertension",
-       x = "Drug",
-       y = "Cost per QALY gained ($/QALY)")
 ```
-
-<img src="https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs/blob/28ed6072dbaed988c7c543ad99f7c6c20def1f88/Image1.png">
 
 
 ## Results
 
-To visualize the results, we create a cost-effectiveness plane (Figure 2) and an incremental cost-effectiveness ratio (ICER) plot (Figure 3). Figure 2 shows the cost and QALY results for each drug, with each point representing one simulation. The bottom right quadrant of the plot represents the most cost-effective option, and as we can see, drug A dominates the other two drugs. Figure 3 shows the ICER results, which compare the incremental cost per QALY gained between each pair of drugs. The vertical line represents the willingness-to-pay threshold, which is the maximum amount the decision maker is willing to pay for an additional QALY gained. As we can see, drug A is the most cost-effective option, as it has the lowest ICER compared to the other two drugs.
+To visualize the results, we create a cost-effectiveness plane (Figure 1) and an incremental cost-effectiveness ratio (ICER) plot (Figure 2). Figure 1 shows the cost and QALY results for each drug, with each point representing one simulation. The bottom right quadrant of the plot represents the most cost-effective option, and as we can see, drug A dominates the other two drugs. Figure 2 shows the ICER results, which compare the incremental cost per QALY gained between each pair of drugs. The vertical line represents the willingness-to-pay threshold, which is the maximum amount the decision maker is willing to pay for an additional QALY gained. As we can see, drug A is the most cost-effective option, as it has the lowest ICER compared to the other two drugs.
 
 ```{r}
 ## Cost-effectiveness plane
@@ -152,10 +143,10 @@ ggplot(icer_results, aes(x = drugs, y = ICER)) +
 ```
 
 <img src="https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs/blob/28ed6072dbaed988c7c543ad99f7c6c20def1f88/Image2.png">
-Figure 2: Cost-effectiveness plane.
+Figure 1: Cost-effectiveness plane.
 
 <img src="https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs/blob/28ed6072dbaed988c7c543ad99f7c6c20def1f88/Image3.png">
-Figure 3: Incremental cost-effectiveness ratio (ICER) plot.
+Figure 2: Incremental cost-effectiveness ratio (ICER) plot.
 
 ## Interpretation
 
