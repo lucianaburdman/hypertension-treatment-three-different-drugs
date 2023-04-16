@@ -7,7 +7,7 @@ output: html_document
 
 # Introduction
 
-As a biostatistician with a strong background in HEOR, I am excited to showcase my skills and expertise in a validation project that aligns with Parexel's core values and services. Leveraging my experience in the industry and my familiarity with the company, I have developed a project that focuses on three critical aspects of HEOR: evidence identification, health economic modeling, and clinical outcomes assessments.
+As a biostatistician with a strong background in HEOR, I am excited to showcase my skills and expertise in a validation project that aligns with Parexel's core values and services. Leveraging my experience in the industry and my familiarity with the company, I have developed a project that focuses on two of the three essential element of HEOR that Parexel provides support for: evidence identification and health economic modeling.
 
 By conducting a thorough literature review, designing a robust health economic model, and selecting the most appropriate clinical outcomes assessments, my project aims to demonstrate my ability to provide a comprehensive and data-driven evidence package that meets HTA guidelines. I am confident that this project will not only showcase my skills but also demonstrate my commitment to advancing clinical research and improving patient outcomes.
 
