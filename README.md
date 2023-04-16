@@ -11,6 +11,7 @@ As a biostatistician with a strong background in HEOR, I am excited to showcase 
 
 By conducting a thorough literature review, designing a robust health economic model, and selecting the most appropriate clinical outcomes assessments, my project aims to demonstrate my ability to provide a comprehensive and data-driven evidence package that meets HTA guidelines. I am confident that this project will not only showcase my skills but also demonstrate my commitment to advancing clinical research and improving patient outcomes.
 
+**If you'd like to go straight to the results plots and interpretation, click [here](##results)**
 
 # Evidence Identification with Literature Review
 
@@ -97,7 +98,7 @@ ggplot(data, aes(x = drug, y = cpq, fill = drug)) +
        y = "Cost per QALY gained ($/QALY)")
 ```
 
-<img src="https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs/blob/4d6a18f31ed636b03cbb4cd91308a223262577d1/Image1.png">
+<img src="https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs/blob/28ed6072dbaed988c7c543ad99f7c6c20def1f88/Image1.png">
 
 To visualize the results, we created a cost-effectiveness plane (Figure 1) and an incremental cost-effectiveness ratio (ICER) plot (Figure 2). Figure 1 shows the cost and QALY results for each drug, with each point representing one simulation. The bottom right quadrant of the plot represents the most cost-effective option, and as we can see, drug A dominates the other two drugs. Figure 2 shows the ICER results, which compare the incremental cost per QALY gained between each pair of drugs. The vertical line represents the willingness-to-pay threshold, which is the maximum amount the decision maker is willing to pay for an additional QALY gained. As we can see, drug A is the most cost-effective option, as it has the lowest ICER compared to the other two drugs.
 
@@ -153,10 +154,10 @@ ggplot(icer_results, aes(x = drugs, y = ICER)) +
 
 ```
 
-<img src="https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs/blob/4d6a18f31ed636b03cbb4cd91308a223262577d1/Image2.png">
+<img src="https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs/blob/28ed6072dbaed988c7c543ad99f7c6c20def1f88/Image2.png">
 Figure 2: Cost-effectiveness plane.
 
-<img src="https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs/blob/4d6a18f31ed636b03cbb4cd91308a223262577d1/Image3.png">
+<img src="https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs/blob/28ed6072dbaed988c7c543ad99f7c6c20def1f88/Image3.png">
 Figure 3: Incremental cost-effectiveness ratio (ICER) plot.
 
 ## Interpretation
