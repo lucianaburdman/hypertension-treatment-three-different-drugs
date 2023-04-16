@@ -1,5 +1,5 @@
 ---
-title: "Cost-Effectiveness Acceptability Curve Plots"
+title: "Evaluation of three drugs in the hypertension treatment"
 author: "Luciana Burdman"
 date: "2023-04-14"
 output: html_document
