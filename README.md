@@ -181,7 +181,7 @@ Overall, our health economic modeling provides valuable insights into the cost-e
 
 # Would you like to see a small project on RWE?
 
-Follow this [link](https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs)
+Follow this [link](https://github.com/lucianaburdman/RWE)
 
 # About the author
 
