@@ -179,6 +179,9 @@ It is important to note that our simulations were based on several assumptions a
 
 Overall, our health economic modeling provides valuable insights into the cost-effectiveness of different drugs for treating hypertension, and can help inform decision making and resource allocation in healthcare settings.
 
+# Would you like to see a small project on RWE?
+
+Follow this [link](https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs)
 
 # About the author
 
