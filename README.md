@@ -7,13 +7,9 @@ output: html_document
 
 # Introduction
 
-As a biostatistician with a strong background in cutting-edge statistical and scientific developments, I am excited to showcase my skills and expertise that aligns with Parexel's core values and services. Leveraging my experience in the industry and in Parexel, I have developed a repository that focuses on two of the three essential element of HEOR that Parexel provides support for: evidence identification and health economic modeling.
+As a biostatistician with a strong background in cutting-edge statistical and scientific developments, I've developed this project to apply my skills in health economic modeling (HEOR).
 
 **If you'd like to go straight to the results plots and interpretation, click [here](https://github.com/lucianaburdman/hypertension-treatment-three-different-drugs#results)**
-
-# Evidence Identification with Literature Review
-
-As a biostatistician with 8+ years of experience in life science research, I understand the importance of evidence identification through systematic and comprehensive literature reviews in Health Economics and Outcomes Research (HEOR). Parexel's focus on HTA-compliant reviews, covering clinical trial outcomes, quality of life, product comparators and economic evidence, aligns with my analytical mindset and research expertise. With a collaborative and self-reliant approach, I am confident in my ability to eliminate risk of bias, identify necessary data and adapt to meet the objectives of the study. My track record of leading research projects and proposing innovative solutions, coupled with strong communication skills, will enable me to work effectively with a diverse team of medical professionals, statisticians, and investors to provide a comprehensive evidence package that advances clinical research in healthcare's most complex areas.
 
 # Health Economic Modeling
 
