@@ -13,7 +13,7 @@ As a biostatistician with a strong background in cutting-edge statistical and sc
 
 # Health Economic Modeling
 
-In this section, I will showcase my skills in health economic modeling by simulating and comparing the cost-effectiveness of three drugs for treating hypertension using R, in line with Parexel's focus on generating evidence-based value propositions and decision-making tools.
+In this section, I will showcase my skills in health economic modeling by simulating and comparing the cost-effectiveness of three drugs for treating hypertension using R, focusing on generating evidence-based value propositions and decision-making tools.
 
 The following R code simulates data for three drugs (A, B, C) to treat hypertension and estimates the effect of each drug.
 
